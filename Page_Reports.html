@@ -1,1 +1,27 @@
 <h3 class="page-title">Report Generator</h3>
+
+<p class="describe">
+    Pull reports and understand insights about NER projects.
+</p>
+
+<div class="main-input">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Type</span>
+        </div>
+        <select class="custom-select" id="report-type-go-input" aria-label="Report type select with go button">
+            <option selected>Choose...</option>
+            <option value="1">Status Dashboard</option>
+            <option value="2">Upcoming Deadlines</option>
+            <option value="3">Change Requests</option>
+            <option value="4">Manufacturing & Welding</option>
+        </select>
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit" id="report-type-go-btn">Go</button>
+        </div>
+    </div>
+</div>
+
+<div class="main-content" id="report-content">
+    Empty Placeholder
+</div>
