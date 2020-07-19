@@ -17,21 +17,25 @@
 
     // click Go button on Gantt page
     $("#gantt-go-btn").on("click", function () {
-        alert("Gantt go button clicked");
+        var wbs_input = $("#gantt-go-input").val();
+        alert("Gantt go button clicked, WBS # " + wbs_input);
     });
 
     // click Go button on WP Lookup page
     $("#wp-go-btn").on("click", function () {
-        alert("WP Lookup go button clicked");
+        var wp_input = $("#wp-go-input").val();
+        alert("WP Lookup go button clicked, WBS # " + wp_input);
     });
 
     // click Go button on Changes page for change type
     $("#change-type-go-btn").on("click", function () {
-        alert("Change type go button clicked");
+        var change_type = $("#change-type-go-input").val();
+        alert("Change type go button clicked, type: " + change_type);
     });
 
     // click Go button on Reports page
     $("#report-type-go-btn").on("click", function () {
-        alert("Report type go button clicked");
+        var report_type = $("#report-type-go-input").val();
+        alert("Report type go button clicked, type: " + report_type);
     });
   </script>
