@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base target="_top">
+  <?!= include('Stylesheet'); ?>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <?!= include('JavaScript'); ?>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+  <title>NER - PM Site</title>
+</head>
+
+<body>
+  <div class="text-center py-4" style="background-color: rgb(255, 0, 0);">
+    <h2>NER Project Management</h2>
+  </div>
+  <div class="container-lg pt-4">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item pl-4">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="gantt-tab" data-toggle="tab" href="#gantt" role="tab" aria-controls="gantt"
+          aria-selected="false">Gantt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="wp-lookup-tab" data-toggle="tab" href="#wp-lookup" role="tab" aria-controls="wp-lookup"
+          aria-selected="false">WP Lookup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="changes-tab" data-toggle="tab" href="#changes" role="tab" aria-controls="changes"
+          aria-selected="false">Changes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="reports-tab" data-toggle="tab" href="#reports" role="tab" aria-controls="reports"
+          aria-selected="false">Reports</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="glossary-tab" data-toggle="tab" href="#glossary" role="tab" aria-controls="glossary"
+          aria-selected="false">Glossary</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="container px-6" id="home-content">
+          <?!= include('Page_Home'); ?>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="gantt" role="tabpanel" aria-labelledby="gantt-tab">
+        <div class="container-lg">
+          <?!= include('Page_Gantt'); ?>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="wp-lookup" role="tabpanel" aria-labelledby="wp-lookup-tab">
+        <div class="container-lg">
+          <?!= include('Page_WP-Lookup'); ?>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="changes" role="tabpanel" aria-labelledby="changes-tab">
+        <div class="container-lg">
+          <?!= include('Page_Changes'); ?>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="reports" role="tabpanel" aria-labelledby="reports-tab">
+        <div class="container-lg">
+          <?!= include('Page_Reports'); ?>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="glossary" role="tabpanel" aria-labelledby="glossary-tab">
+        <div class="container-lg">
+          <?!= include('Page_Glossary'); ?>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+</body>
+</html>
