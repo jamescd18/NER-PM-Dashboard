@@ -18,9 +18,10 @@ function include(filename) {
 }
 
 // testFunc : n/a -> Error
-// Function that just throws an error
+// Function for testing features and functions
 function testFunc() {
-    throw "example error";
+  var stuff = buildUnorderedListHTML("item one; item 2", ";");
+  Logger.log(stuff);
 }
 
 // getSheetData : String String -> Array[][]

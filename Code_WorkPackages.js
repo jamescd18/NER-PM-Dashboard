@@ -85,6 +85,6 @@ function buildUnorderedListHTML(text, delimiter) {
         }
         textRemaining = textRemaining.slice(nextIdx + 1);
     }
-    list = `<li>` + textRemaining + `</li>`;
+    list += `<li>` + textRemaining + `</li>`;
     return `<ul>` + list + `</ul>`;
 }
