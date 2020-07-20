@@ -1,4 +1,5 @@
 <script>
+    // onFailure : Error -> n/a
     // failure handler for async server calls, adds dismissable error alert to top of page
     function onFailure(error) {
         var  html = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -9,8 +10,16 @@
                     </div>`;
         $(".error-box").html(html);
     }
-    
-    var runner = google.script.run.withFailureHandler(onFailure);
+
+    // onSuccessHTML : HTML Object[HTML] -> n/a
+    // success handler for async server calls, inserts returned payload into provided element's HTML
+    function onSuccessHTML(htmlPayload, htmlObject) {
+        htmlObject.html(htmlPayload);
+    }
+
+    var runnerHTML = google.script.run.withFailureHandler(onFailure).withSuccessHandler(onSuccessHTML);
+
+    /* General website functions */
 
     // load page elements
     $(window).on("pageshow", function() {
@@ -23,33 +32,34 @@
       $(".loader-wrapper").fadeOut("slow");
     });
 
-    // update button
-    function updateButton(result, button) {
-      button.value = 'Result: ' + result;
-    }
+    /* Gantt page functions */
 
     // click Go button on Gantt page
     $("#gantt-go-btn").on("click", function () {
-        runner.testFunc();
-        //var wbs_input = $("#gantt-go-input").val();
-        //alert("Gantt go button clicked, WBS # " + wbs_input);
+        var gantt_input = $("#gantt-go-input").val();
+        var gantt_content = $("#gantt-content");
+        alert("Gantt go button clicked, WBS # " + gantt_input);
     });
 
     // click Go button on WP Lookup page
     $("#wp-go-btn").on("click", function () {
         var wp_input = $("#wp-go-input").val();
-        alert("WP Lookup go button clicked, WBS # " + wp_input);
+        var wp_content = $("#wp-content");
+        runnerHTML.withUserObject(wp_content).getWorkPackage(wp_input);
+        // alert("WP Lookup go button clicked, WBS # " + wp_input);
     });
 
     // click Go button on Changes page for change type
     $("#change-type-go-btn").on("click", function () {
         var change_type = $("#change-type-go-input").val();
+        var change_content = $("#change-content");
         alert("Change type go button clicked, type: " + change_type);
     });
 
     // click Go button on Reports page
     $("#report-type-go-btn").on("click", function () {
         var report_type = $("#report-type-go-input").val();
+        var report_content = $("#report-content");
         alert("Report type go button clicked, type: " + report_type);
     });
   </script>
