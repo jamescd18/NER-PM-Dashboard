@@ -11,3 +11,7 @@ function doGet(request) {
 function include(filename) {
     return HtmlService.createHtmlOutputFromFile(filename).getContent();
 }
+
+function testFunc() {
+    throw "example error";
+}

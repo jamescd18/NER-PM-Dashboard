@@ -1,4 +1,17 @@
 <script>
+    // failure handler for async server calls, adds dismissable error alert to top of page
+    function onFailure(error) {
+        var  html = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> ` + error.message + `
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>`;
+        $(".error-box").html(html);
+    }
+    
+    var runner = google.script.run.withFailureHandler(onFailure);
+
     // load page elements
     $(window).on("pageshow", function() {
       $("#home-content").load("ner_pm_home.html");
@@ -17,8 +30,9 @@
 
     // click Go button on Gantt page
     $("#gantt-go-btn").on("click", function () {
-        var wbs_input = $("#gantt-go-input").val();
-        alert("Gantt go button clicked, WBS # " + wbs_input);
+        runner.testFunc();
+        //var wbs_input = $("#gantt-go-input").val();
+        //alert("Gantt go button clicked, WBS # " + wbs_input);
     });
 
     // click Go button on WP Lookup page
