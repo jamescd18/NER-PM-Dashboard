@@ -62,10 +62,29 @@ function getWorkPackageHtml(workPackage) {
                         <dt class="col-sm-3">Deliverable(s)</dt>
                         <dd class="col-sm-9">` + workPackage.deliverable + `</dd>
                         <dt class="col-sm-3">Description</dt>
-                        <dd class="col-sm-9">` + workPackage.description + `</dd>
+                        <dd class="col-sm-9">` + buildUnorderedListHTML(workPackage.description, ";") + `</dd>
                         <dt class="col-sm-3">Changes</dt>
-                        <dd class="col-sm-9">` + workPackage.changes + `</dd>
+                        <dd class="col-sm-9">` + buildUnorderedListHTML(workPackage.changes, ";") + `</dd>
                     </dl>
                 </div>`;
     return html;
+}
+
+// buildUnorderedListHTML : String String -> HTML
+// Processes text with specified delimiter to produce an HTML unordered list
+function buildUnorderedListHTML(text, delimiter) {
+    var textRemaining = text;
+    var list = "";
+    while(textRemaining.indexOf(delimiter) != -1) {
+        nextIdx = textRemaining.indexOf(delimiter);
+        var line = textRemaining.slice(0, nextIdx);
+        if (line.slice(0, 1) == "-") {
+            list += `<ul><li>` + line.slice(1) + `</li></ul>`;
+        } else {
+            list += `<li>` + line + `</li>`;
+        }
+        textRemaining = textRemaining.slice(nextIdx + 1);
+    }
+    list = `<li>` + textRemaining + `</li>`;
+    return `<ul>` + list + `</ul>`;
 }

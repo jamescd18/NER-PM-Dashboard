@@ -1,121 +1,126 @@
 <style>
-    .page {
-        padding-left: 1em;
-        padding-right: 1em;
+  .page {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .error-box {
+    width: 50%;
+    padding-top: 3px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-title {
+    padding-top: 1em;
+  }
+
+  .describe {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .main-input {
+    padding-left: 1em;
+    padding-bottom: 2em;
+    width: 40%;
+  }
+
+  .main-content {
+    border-color: rgb(200, 200, 200);
+    border-style: solid;
+    border-width: thin;
+    border-radius: 1em;
+    background-color: rgb(200, 200, 200);
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .data-frame {
+    padding: 1em;
+  }
+
+  hr {
+    border: 0;
+    clear: both;
+    display: block;
+    width: 96%;
+    height: 1px;
+  }
+
+  /*************** Loader ***************/
+  .loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 75, 75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loader {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    border: 4px solid #Fff;
+    animation: loader 2s infinite ease;
+  }
+
+  .loader-inner {
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    background-color: #fff;
+    animation: loader-inner 2s infinite ease-in;
+  }
+
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
     }
 
-    .error-box {
-        width: 50%;
-        padding-top: 3px;
-        margin-left: auto;
-        margin-right: auto;
+    25% {
+      transform: rotate(180deg);
     }
 
-    .page-title {
-        padding-top: 1em;
+    50% {
+      transform: rotate(180deg);
     }
 
-    .describe {
-        padding-left: 1em;
-        padding-right: 1em;
+    75% {
+      transform: rotate(360deg);
     }
 
-    .main-input {
-        padding-left: 1em;
-        padding-bottom: 2em;
-        width: 40%;
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes loader-inner {
+    0% {
+      height: 0%;
     }
 
-    .main-content {
-        border-color: rgb(200, 200, 200);
-        border-style: solid;
-        border-width: thin;
-        border-radius: 1em;
-        background-color: rgb(200, 200, 200);
-        width: 75%;
-        margin-left: auto;
-        margin-right: auto;
+    25% {
+      height: 0%;
     }
 
-    .data-frame {
-        padding: 1em;
-    }
-
-    hr {
-        border: 1px solid black;
-    }
-
-    /*************** Loader ***************/
-    .loader-wrapper {
-      width: 100%;
+    50% {
       height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: rgb(255, 75, 75);
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
-    .loader {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      position: relative;
-      border: 4px solid #Fff;
-      animation: loader 2s infinite ease;
+    75% {
+      height: 100%;
     }
 
-    .loader-inner {
-      vertical-align: top;
-      display: inline-block;
-      width: 100%;
-      background-color: #fff;
-      animation: loader-inner 2s infinite ease-in;
+    100% {
+      height: 0%;
     }
-
-    @keyframes loader {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      25% {
-        transform: rotate(180deg);
-      }
-
-      50% {
-        transform: rotate(180deg);
-      }
-
-      75% {
-        transform: rotate(360deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes loader-inner {
-      0% {
-        height: 0%;
-      }
-
-      25% {
-        height: 0%;
-      }
-
-      50% {
-        height: 100%;
-      }
-
-      75% {
-        height: 100%;
-      }
-
-      100% {
-        height: 0%;
-      }
-    }
-  </style>
+  }
+</style>

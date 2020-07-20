@@ -2,7 +2,7 @@
     // onFailure : Error -> n/a
     // failure handler for async server calls, adds dismissable error alert to top of page
     function onFailure(error) {
-        var  html = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        var html = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Error!</strong> ` + error.message + `
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -22,14 +22,14 @@
     /* General website functions */
 
     // load page elements
-    $(window).on("pageshow", function() {
-      $("#home-content").load("ner_pm_home.html");
+    $(window).on("pageshow", function () {
+        $("#home-content").load("ner_pm_home.html");
     });
 
     // once page loaded
     $(window).on("load", function () {
-      $("#home-content").load("ner_pm_home.html");
-      $(".loader-wrapper").fadeOut("slow");
+        $("#home-content").load("ner_pm_home.html");
+        $(".loader-wrapper").fadeOut("slow");
     });
 
     /* Gantt page functions */
@@ -62,4 +62,4 @@
         var report_content = $("#report-content");
         alert("Report type go button clicked, type: " + report_type);
     });
-  </script>
+</script>
