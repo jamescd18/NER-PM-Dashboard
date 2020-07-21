@@ -21,21 +21,17 @@
 
     /* General website functions */
 
-    // load page elements
+    // load page elements via async
     $(function () {
-        // load in WBS # lookup input groups
-        runnerHTML.withUserObject($("#gantt-main-input")).getWBSFormGroup("gantt");
-        runnerHTML.withUserObject($("#wp-lookup-main-input")).getWBSFormGroup("wp");
-        // load in placeholder text for content areas
-        runnerHTML.withUserObject($("#gantt-content")).getPlaceholderHTML("* Coming Soon * <br> Enter WBS # Above");
+        // load placeholder content
         runnerHTML.withUserObject($("#wp-content")).getPlaceholderHTML("Enter WBS # Above");
+        runnerHTML.withUserObject($("#gantt-content")).getPlaceholderHTML("* Coming Soon * <br> Enter WBS # Above");
         runnerHTML.withUserObject($("#change-content")).getPlaceholderHTML("* Coming Soon * <br> Choose Change Type Above");
         runnerHTML.withUserObject($("#report-content")).getPlaceholderHTML("* Coming Soon * <br> Choose Report Type Above");
     });
 
     // once page loaded
     $(window).on("load", function () {
-        $("#home-content").load("ner_pm_home.html");
         $(".loader-wrapper").fadeOut("slow");
     });
 
