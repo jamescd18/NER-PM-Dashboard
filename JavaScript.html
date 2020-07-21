@@ -22,8 +22,15 @@
     /* General website functions */
 
     // load page elements
-    $(window).on("pageshow", function () {
-        $("#home-content").load("ner_pm_home.html");
+    $(function () {
+        // load in WBS # lookup input groups
+        runnerHTML.withUserObject($("#gantt-main-input")).getWBSFormGroup("gantt");
+        runnerHTML.withUserObject($("#wp-lookup-main-input")).getWBSFormGroup("wp");
+        // load in placeholder text for content areas
+        runnerHTML.withUserObject($("#gantt-content")).getPlaceholderHTML("* Coming Soon * <br> Enter WBS # Above");
+        runnerHTML.withUserObject($("#wp-content")).getPlaceholderHTML("Enter WBS # Above");
+        runnerHTML.withUserObject($("#change-content")).getPlaceholderHTML("* Coming Soon * <br> Choose Change Type Above");
+        runnerHTML.withUserObject($("#report-content")).getPlaceholderHTML("* Coming Soon * <br> Choose Report Type Above");
     });
 
     // once page loaded
@@ -46,14 +53,14 @@
         var wp_input = $("#wp-go-input").val();
         var wp_content = $("#wp-content");
         runnerHTML.withUserObject(wp_content).getWorkPackage(wp_input);
-        // alert("WP Lookup go button clicked, WBS # " + wp_input);
     });
 
     // click Go button on Changes page for change type
     $("#change-type-go-btn").on("click", function () {
         var change_type = $("#change-type-go-input").val();
         var change_content = $("#change-content");
-        alert("Change type go button clicked, type: " + change_type);
+        // runnerHTML.withUserObject(change_content).getChangeForm(change_type);
+        // alert("Change type go button clicked, type: " + change_type);
     });
 
     // click Go button on Reports page

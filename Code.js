@@ -72,3 +72,28 @@ function buildListHTML(text, delimiter) {
     }
     return list;
 }
+
+// getWBSFormGroup : String -> HTML
+// Get form group HTML for WBS # input with specified tag id
+function getWBSFormGroup(id) {
+    var html = `<div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">WBS #</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="X.X.X.X.X" 
+                            aria-label="Work Breakdown Structure Number"id="` + id + `-go-input">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" id="` + id + `-go-btn">Go</button>
+                    </div>
+                </div>`;
+    return html;
+}
+
+// getPlaceholderHTML : String -> HTML
+// Get HTML for placeholder content given placeholder text
+function getPlaceholderHTML(text) {
+    var html = `<div class="placeholder-content">
+                    ` + text + `
+                </div>`;
+    return html;
+}
