@@ -42,3 +42,33 @@ function validateWbsNum(wbsNum) {
         throw errorMsg + "incorrect length";
     }
 }
+
+// buildUnorderedListHTML : String String -> HTML
+// Processes text with specified delimiter to produce an HTML unordered list
+function buildUnorderedListHTML(text, delimiter) {
+    return `<ul>` + buildListHTML(text, delimiter) + `</ul>`;
+}
+
+// buildOrderedListHTML : String String -> HTML
+// Processes text with specified delimiter to produce an HTML ordered list (ordered subbullets not supported)
+function buildOrderedListHTML(text, delimiter) {
+    return `<ol>` + buildListHTML(text, delimiter) + `</ol>`;
+}
+
+// buildListHTML : String String -> HTML
+// Processes text with specified delimiter to produce HTML of list elements
+function buildListHTML(text, delimiter) {
+    var textRemaining = text;
+    var list = "";
+    while(textRemaining.indexOf(delimiter) != -1) {
+        nextIdx = textRemaining.indexOf(delimiter);
+        var line = textRemaining.slice(0, nextIdx);
+        if (line.slice(0, 1) == "-") {
+            list += `<ul><li>` + line.slice(1) + `</li></ul>`;
+        } else {
+            list += `<li>` + line + `</li>`;
+        }
+        textRemaining = textRemaining.slice(nextIdx + 1);
+    }
+    return list;
+}
