@@ -17,7 +17,8 @@
         htmlObject.html(htmlPayload);
     }
 
-    var runnerHTML = google.script.run.withFailureHandler(onFailure).withSuccessHandler(onSuccessHTML);
+    var basicRunner = google.script.run.withFailureHandler(onFailure);
+    var runnerHTML = basicRunner.withSuccessHandler(onSuccessHTML);
 
     /* General website functions */
 
@@ -34,7 +35,7 @@
     $(window).on("load", function () {
         setTimeout(function () {
             $(".loader-wrapper").fadeOut("slow");
-        }, 500);
+        }, 400);
     });
 
     /* Gantt page functions */
@@ -46,6 +47,8 @@
         alert("Gantt go button clicked, WBS # " + gantt_input);
     });
 
+    /* WP Lookup page functions */
+
     // click Go button on WP Lookup page
     $("#wp-go-btn").on("click", function () {
         var wp_input = $("#wp-go-input").val();
@@ -53,34 +56,48 @@
         runnerHTML.withUserObject(wp_content).getWorkPackage(wp_input);
     });
 
+    /* Changes page functions */
+
+    // onSuccessHTMLStatusUpdateSubmit : HTML Object[HTML] -> n/a
+    // success handler for async server calls, inserts returned payload into provided element's HTML
+    function onSuccessHTMLStatusUpdateSubmit(htmlPayload, htmlObject) {
+        htmlObject.html(htmlPayload);
+        $("#new-status-go-btn").on("click", function () {
+            var newStatusObj = {
+                wbs: $("#status-go-input").val(),
+                status: $("#new-status-go-input").val(),
+            };
+            var message_box = $(".error-box");
+            runnerHTML.withUserObject(message_box).setNewStatus(newStatusObj);
+        });
+    }
+
+    // onSuccessHTMLStatusUpdate : HTML Object[HTML] -> n/a
+    // success handler for async server calls, inserts returned payload into provided element's HTML
+    function onSuccessHTMLStatusUpdate(htmlPayload, htmlObject) {
+        htmlObject.html(htmlPayload);
+        $("#status-go-btn").on("click", function () {
+            var status_lookup_input = $("#status-go-input").val();
+            var status_content = $("#status-content");
+            var statusUpdateSubmitRunner = basicRunner.withSuccessHandler(onSuccessHTMLStatusUpdateSubmit);
+            statusUpdateSubmitRunner.withUserObject(status_content).getStatusUpdateContent(status_lookup_input);
+        });
+    }
+
     // click Go button on Changes page for change type
     $("#change-type-go-btn").on("click", function () {
         var change_type = $("#change-type-go-input").val();
         var change_content = $("#change-content");
-        runnerHTML.withUserObject(change_content).getChangeForm(change_type);
-        // alert("Change type go button clicked, type: " + change_type);
-        // wait for click on frame before attaching click listener to button
+        // use different success handler functions to add proper click handlers to buttons
         if (change_type == "status") {
-            change_content.on("click", function () {
-                $("#status-go-btn").on("click", function () {
-                    var status_lookup_input = $("#status-go-input").val();
-                    var status_content = $("#status-content");
-                    runnerHTML.withUserObject(status_content).getStatusUpdateContent(status_lookup_input);
-                    status_content.on("click", function () {
-                        $("#new-status-go-btn").on("click", function () {
-                            var new_status_input = $("#new-status-go-input").val();
-                            var newStatusObj = {
-                                wbs: status_lookup_input,
-                                status: new_status_input,
-                            };
-                            var message_box = $(".error-box");
-                            runnerHTML.withUserObject(message_box).setNewStatus(newStatusObj);
-                        });
-                    });
-                });
-            });
+            var statusUpdateRunner = basicRunner.withSuccessHandler(onSuccessHTMLStatusUpdate);
+            statusUpdateRunner.withUserObject(change_content).getChangeForm(change_type);
+        } else {
+            runnerHTML.withUserObject(change_content).getChangeForm(change_type);
         }
     });
+
+    /* Reports page functions */
 
     // click Go button on Reports page
     $("#report-type-go-btn").on("click", function () {

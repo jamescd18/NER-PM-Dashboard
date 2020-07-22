@@ -33,7 +33,7 @@ function getStatusUpdateForm() {
                         </div>
                     </div>
                     <div id="status-content">
-                        ` + getPlaceholderHTML("* Coming Soon! * <br> Enter WBS # Above") + `
+                        ` + getPlaceholderHTML("Enter WBS # Above") + `
                     </div>
                 </div>`;
     return html;
