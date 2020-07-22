@@ -68,7 +68,7 @@ function getStatusUpdateContent(wbsNum) {
                         <dd class="col-sm-9">` + workPackage.name + `</dd>
                         <hr>
                         <dt class="col-sm-3">Current Status</dt>
-                        <dd class="col-sm-9">` + "50% [Placeholder]" + `</dd>
+                        <dd class="col-sm-9">` + workPackage.status * 100 + `%</dd>
                         <dt class="col-sm-3">New Status</dt>
                         <dd class="col-sm-9">` + getNewStatusInput() + `</dd>
                     </dl>
@@ -98,8 +98,20 @@ function getNewStatusInput() {
 // setNewStatus : Object[New Status] -> HTML
 // Sets status of WBS # in newStatus to number in newStatus, return HTML for success message
 function setNewStatus(newStatus) {
+    var sheetRange = getSheetRange('mainSheetID', 'Work Packages');
+    var data = sheetRange.getValues();
+    var headers = data[0];
+    var wbsColIdx = findIdx("WBS #", headers);
+    var curStatusColIdx = findIdx("Status", headers);
+    for (var rowIdx = 1; rowIdx < data.length; rowIdx++) {
+        if (data[rowIdx][wbsColIdx] == newStatus.wbs) {
+            data[rowIdx][curStatusColIdx] = newStatus.status;
+            break;
+        }
+    }
+    sheetRange.setValues(data);
     var html = `<div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Success!</strong> Set ` + newStatus.wbs + ` to ` + newStatus.status + ` [TEST]
+                        <strong>Success!</strong> Set ` + newStatus.wbs + ` to ` + newStatus.status + `
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

@@ -24,14 +24,25 @@ function testFunc() {
   Logger.log(stuff);
 }
 
-// getSheetData : String String -> Array[][]
-// Fetches 2D array of spreadsheet data given the script property name where the file ID is stored and the sheet name
-function getSheetData(fileIDPropName, sheetName) {
+// getSheetRange : String String -> Object[Range]
+// Fetches Range object of spreadsheet data given the script property name where the file ID is stored and the sheet name
+function getSheetRange(fileIDPropName, sheetName) {
     var fileId = scriptProps.getProperty(fileIDPropName);
     var file = SpreadsheetApp.openById(fileId);
     var sheet = file.getSheetByName(sheetName);
     var range = sheet.getDataRange();
-    return range.getValues();
+    return range;
+}
+
+// findIdx : Array[] any -> Number
+// Return index of given item in the given array, throws error if not found
+function findIdx(item, array) {
+    var idx = array.indexOf(item);
+    if (idx == -1) {
+        throw "Item not found in array";
+    } else {
+        return idx;
+    }
 }
 
 // validateWbsNum : String -> n/a

@@ -13,10 +13,12 @@ function getWorkPackage(wbsNum) {
 // Build work package object from spreadsheet data
 function getWorkPackageObj(wbsNum) {
     validateWbsNum(wbsNum);
-    var data = getSheetData('mainSheetID', 'Work Packages');
+    var data = getSheetRange('mainSheetID', 'Work Packages').getValues();
+    var headers = data[0];
+    var wbsColIdx = findIdx("WBS #", headers);
     var rowData = [];
     for (var rowIdx = 1; rowIdx < data.length; rowIdx++) {
-        if (data[rowIdx][2] == wbsNum) {
+        if (data[rowIdx][wbsColIdx] == wbsNum) {
             rowData = data[rowIdx];
             break;
         }
@@ -25,16 +27,20 @@ function getWorkPackageObj(wbsNum) {
         throw "No Work Package data found."
     }
     var workPackage = {
-        project: rowData[0],
-        lead: rowData[1],
-        wbsNum: rowData[2],
-        name: rowData[3],
-        duration: rowData[4] + " weeks",
-        budget: "$" + rowData[5],
-        dependancies: rowData[6],
-        deliverable: rowData[7],
-        description: rowData[8],
-        changes: rowData[9]
+        project: rowData[findIdx("Project", headers)],
+        lead: rowData[findIdx("Project Lead", headers)],
+        wbsNum: rowData[wbsColIdx],
+        name: rowData[findIdx("WP Name", headers)],
+        duration: rowData[findIdx("Duration", headers)] + " weeks",
+        budget: "$" + rowData[findIdx("Budget", headers)],
+        dependancies: rowData[findIdx("Dependencies", headers)],
+        deliverable: rowData[findIdx("Deliverables", headers)],
+        description: rowData[findIdx("Description", headers)],
+        changes: rowData[findIdx("Changes", headers)],
+        status: rowData[findIdx("Status", headers)],
+        expected: rowData[findIdx("Expected", headers)],
+        start: rowData[findIdx("Start", headers)],
+        end: rowData[findIdx("End", headers)],
     };
     return workPackage;
 }
