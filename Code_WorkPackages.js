@@ -13,13 +13,15 @@ function getWorkPackage(wbsNum) {
 // Build work package object from spreadsheet data
 function getWorkPackageObj(wbsNum) {
     validateWbsNum(wbsNum);
-    var data = getSheetRange('mainSheetID', 'Work Packages').getValues();
+    var data = getSheetInfo('mainSheetID', 'Work Packages', 'data');
     var headers = data[0];
     var wbsColIdx = findIdx("WBS #", headers);
     var rowData = [];
+    var wbsRow = 0;
     for (var rowIdx = 1; rowIdx < data.length; rowIdx++) {
         if (data[rowIdx][wbsColIdx] == wbsNum) {
             rowData = data[rowIdx];
+            wbsRow = rowIdx;
             break;
         }
     }
@@ -27,6 +29,7 @@ function getWorkPackageObj(wbsNum) {
         throw "No Work Package data found."
     }
     var workPackage = {
+        wbsRowIdx: wbsRow,
         project: rowData[findIdx("Project", headers)],
         lead: rowData[findIdx("Project Lead", headers)],
         wbsNum: rowData[wbsColIdx],

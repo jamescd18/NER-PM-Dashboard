@@ -24,14 +24,23 @@ function testFunc() {
   Logger.log(stuff);
 }
 
-// getSheetRange : String String -> Object[Range]
+// getSheetInfo : String String -> Object[]
 // Fetches Range object of spreadsheet data given the script property name where the file ID is stored and the sheet name
-function getSheetRange(fileIDPropName, sheetName) {
+function getSheetInfo(fileIDPropName, sheetName, dataReturnType) {
     var fileId = scriptProps.getProperty(fileIDPropName);
     var file = SpreadsheetApp.openById(fileId);
     var sheet = file.getSheetByName(sheetName);
     var range = sheet.getDataRange();
-    return range;
+    var data = range.getValues();
+    if (dataReturnType == "sheet") {
+        return sheet;
+    } else if (dataReturnType == "range") {
+        return range;
+    } else if (dataReturnType == "data") {
+        return data;
+    } else {
+        throw "Invalid Spreadsheet return type";
+    }
 }
 
 // findIdx : Array[] any -> Number

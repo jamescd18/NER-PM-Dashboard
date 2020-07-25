@@ -98,7 +98,7 @@ function getNewStatusInput() {
 // setNewStatus : Object[New Status] -> HTML
 // Sets status of WBS # in newStatus to number in newStatus, return HTML for success message
 function setNewStatus(newStatus) {
-    var sheetRange = getSheetRange('mainSheetID', 'Work Packages');
+    var sheetRange = getSheetInfo('mainSheetID', 'Work Packages', 'range');
     var data = sheetRange.getValues();
     var headers = data[0];
     var wbsColIdx = findIdx("WBS #", headers);
