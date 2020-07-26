@@ -44,6 +44,7 @@ function getWorkPackageObj(wbsNum) {
         expected: rowData[findIdx("Expected", headers)],
         start: rowData[findIdx("Start", headers)],
         end: rowData[findIdx("End", headers)],
+        spend: rowData[findIdx("Spend", headers)],
     };
     return workPackage;
 }

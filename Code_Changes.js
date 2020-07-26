@@ -98,18 +98,13 @@ function getNewStatusInput() {
 // setNewStatus : Object[New Status] -> HTML
 // Sets status of WBS # in newStatus to number in newStatus, return HTML for success message
 function setNewStatus(newStatus) {
-    var sheetRange = getSheetInfo('mainSheetID', 'Work Packages', 'range');
-    var data = sheetRange.getValues();
-    var headers = data[0];
-    var wbsColIdx = findIdx("WBS #", headers);
-    var curStatusColIdx = findIdx("Status", headers);
-    for (var rowIdx = 1; rowIdx < data.length; rowIdx++) {
-        if (data[rowIdx][wbsColIdx] == newStatus.wbs) {
-            data[rowIdx][curStatusColIdx] = newStatus.status;
-            break;
-        }
-    }
-    sheetRange.setValues(data);
+    var wpData = getWorkPackageObj(newStatus.wbs);
+    var sheet = getSheetInfo('mainSheetID', 'Work Packages', 'sheet');
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var statusCell = sheet.getRange(wpData.wbsRowIdx + 1, findIdx("Status", headers) + 1);
+    var statusCellFormat = statusCell.getNumberFormat(); // store number format to preserve formatting
+    statusCell.setValue(newStatus.status);
+    statusCell.setNumberFormat(statusCellFormat);
     var html = `<div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Success!</strong> Set ` + newStatus.wbs + ` to ` + newStatus.status + `
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
