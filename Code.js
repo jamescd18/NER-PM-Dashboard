@@ -58,8 +58,10 @@ function findIdx(item, array) {
 // Is the provided string a valid Work Breakdown Structure number? (If no, throw an error)
 function validateWbsNum(wbsNum) {
     var errorMsg = "WBS Invalid: ";
-    if (wbsNum.length != 9) {
+    if (wbsNum.length != 5) {
         throw errorMsg + "incorrect length";
+    } else if (wbsNum.charAt(0) != "1" && wbsNum.charAt(0) != "2" && wbsNum.charAt(0) != "X") {
+        throw errorMsg + "function areas are only 1 or 2, found " + wbsNum.charAt(0);
     }
 }
 

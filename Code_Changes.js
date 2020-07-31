@@ -25,7 +25,7 @@ function getStatusUpdateForm() {
                             <div class="input-group-prepend">
                                 <span class="input-group-text">WBS #</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="X.X.X.X.X" 
+                            <input type="text" class="form-control" placeholder="X.X.X" 
                                     aria-label="Work Breakdown Structure Number"id="status-go-input">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit" id="status-go-btn">Go</button>
