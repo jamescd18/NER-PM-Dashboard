@@ -20,8 +20,7 @@ function include(filename) {
 // testFunc : n/a -> Error
 // Function for testing features and functions
 function testFunc() {
-  var stuff = buildUnorderedListHTML("item one; item 2", ";");
-  Logger.log(stuff);
+  validateWbsNum("1.1.1");
 }
 
 // getSheetInfo : String String -> Object[]
@@ -58,8 +57,10 @@ function findIdx(item, array) {
 // Is the provided string a valid Work Breakdown Structure number? (If no, throw an error)
 function validateWbsNum(wbsNum) {
     var errorMsg = "WBS Invalid: ";
-    if (wbsNum.length != 5) {
-        throw errorMsg + "incorrect length";
+    if (wbsNum.match(/\./g) == null) {
+        throw errorMsg + "WBS #s include periods, none found";
+    } else if (wbsNum.match(/\./g).length != 2) {
+        throw errorMsg + "incorrect number of periods";
     } else if (wbsNum.charAt(0) != "1" && wbsNum.charAt(0) != "2" && wbsNum.charAt(0) != "X") {
         throw errorMsg + "function areas are only 1 or 2, found " + wbsNum.charAt(0);
     }
