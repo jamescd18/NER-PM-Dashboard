@@ -28,3 +28,9 @@ function onRequestSubmit() {
         docs: "",
     }
 }
+
+// getNextChangeRequestId : String -> String
+// returns the next request ID for the given request type based on previous requests
+function getNextChangeRequestId(requestType) {
+    console.log(requestType);
+}
