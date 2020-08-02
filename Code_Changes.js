@@ -81,7 +81,7 @@ function getStatusUpdateContent(wbsNum) {
 function getNewStatusInput() {
     var html = `<div class="input-group mb-3">
                     <select class="custom-select" id="new-status-go-input" aria-label="Status select with go button">
-                        <option selected>Choose...</option>
+                        <option selected disabled>Choose...</option>
                         <option value="0.00">0%</option>
                         <option value="0.25">25%</option>
                         <option value="0.50">50%</option>
