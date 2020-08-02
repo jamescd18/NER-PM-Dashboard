@@ -10,23 +10,18 @@ function onRequestSubmit() {
     var responses = form.getResponses();
     var latestResponse = responses[responses.length - 1];
     var responseData = latestResponse.getItemResponses();
-    for (var j = 0; j < responseData.length; j++) {
-        var item = responseData[j];
-        Logger.log('Response #%s to the question "%s" was "%s"', 
-                    (j + 1).toString(), 
-                    item.getItem().getTitle(),
-                    item.getResponse());
-    }
-    var data = {
-        idNum: "",
-        dateTime: "",
-        requestor: "",
-        wbsNum: "",
-        what: "",
-        why: "",
-        impact: "",
-        docs: "",
-    }
+    var data = [
+        getNextChangeRequestId(responseData[2].getResponse()), // id num
+        latestResponse.getTimestamp(), // date time
+        responseData[0].getResponse(), // requestor
+        responseData[1].getResponse(), // wbs number
+        responseData[3].getResponse(), // what
+        responseData[4].getResponse(), // why
+        responseData[5].getResponse(), // impact
+        responseData[6].getResponse(), // docs
+    ]
+    var sheet = getSheetInfo('mainSheetID', 'Change Requests', 'sheet');
+    sheet.appendRow(data);
 }
 
 // getNextChangeRequestId : String -> String
