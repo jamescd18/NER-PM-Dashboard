@@ -11,7 +11,7 @@ function getReport(reportType) {
     } else if (reportType == "deadlines") {
         return getPlaceholderHTML("* Coming Soon! *");
     } else if (reportType == "changes") {
-        return getPlaceholderHTML("* Coming Soon! *");
+        return getAllChangeRequests();
     } else if (reportType == "fab") {
         return getPlaceholderHTML("* Coming Soon! *");
     } else {
