@@ -96,6 +96,24 @@ function buildListHTML(text, delimiter) {
     return list;
 }
 
+// buildTableHTML : Content[][] String -> HTML
+// construct an HTML tale give the content (with header row) and modifiers
+function buildTableHTML(content, modifiers) {
+    var html = `<table class="table ` + modifiers + `"><thead><tr>`;
+    for (var hCol = 0; hCol < content[0].length; hCol++) {
+        html += `<th scope="col">` + content[0][hCol] + `</th>`;
+    }
+    html += `</tr></thead><tbody>`;
+    for (var rowIdx = 1; rowIdx < content.length; rowIdx++) {
+        html += `<tr><th scope="row">` + content[rowIdx][0] + `</th>`;
+        for (var colIdx = 1; colIdx < content[rowIdx].length; colIdx++) {
+            html += `<td>` + content[rowIdx][colIdx] + `</td>`;
+        }
+        html += `</tr>`;
+    }
+  return html + `</tbody></table>`;
+}
+
 // getPlaceholderHTML : String -> HTML
 // Get HTML for placeholder content given placeholder text
 function getPlaceholderHTML(text) {

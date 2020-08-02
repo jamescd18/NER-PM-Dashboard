@@ -103,6 +103,6 @@
     $("#report-type-go-btn").on("click", function () {
         var report_type = $("#report-type-go-input").val();
         var report_content = $("#report-content");
-        alert("Report type go button clicked, type: " + report_type);
+        runnerHTML.withUserObject(report_content).getReport(report_type);
     });
 </script>
