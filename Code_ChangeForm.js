@@ -22,7 +22,7 @@ function onRequestSubmit() {
 function getNextChangeRequestId(requestType) {
     var typeLetter = convertToTypeLetter(requestType);
     var data = getSheetInfo('mainSheetID', 'Change Requests', 'data');
-    var changeIdIdx = findIdx("Request ID", data[0]);
+    var changeIdIdx = findIdx("ID", data[0]);
     var numRequests = data.length - 1;
     var latestId;
     for (var rowIdx = numRequests; rowIdx > 0; rowIdx--) {
