@@ -12,7 +12,7 @@ function getEntireGanttSheet(width, height) {
                         </button>
                         <div class="modal fade" id="centeredFullGantt" tabindex="-1" role="dialog" aria-labelledby="centeredFullGantt" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
+                                <div class="modal-content" style="width: ` + width * widthScalar * 1.1 + `px; height: ` + height * heightScalar * 1.1 + `px">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
