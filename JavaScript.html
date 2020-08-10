@@ -44,7 +44,7 @@
     $("#gantt-go-btn").on("click", function () {
         var gantt_input = $("#gantt-go-input").val();
         var gantt_content = $("#gantt-content");
-        runnerHTML.withUserObject(gantt_content).getEntireGanttSheet();
+        runnerHTML.withUserObject(gantt_content).getEntireGanttSheet(window);
     });
 
     /* WP Lookup page functions */

@@ -1,8 +1,8 @@
 
 
-// getEntireGanttSheet : n/a -> HTML
+// getEntireGanttSheet : HTMLWindow -> HTML
 // return HTML iframe display for the Gantt in the Database spreadsheet
-function getEntireGanttSheet() {
+function getEntireGanttSheet(window) {
     var html = `<div>
                     <div>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#centeredFullGantt">
@@ -19,7 +19,7 @@ function getEntireGanttSheet() {
                                     </div>
                                     <div class="modal-body">
                                         <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ21BbKSgpjzx-GgFu8OymjbgaaWcp-VnTcNdeFYiMmcib_LTpYQcs4229ZvGBwUNrB8zBpOqzYvF7v/pubhtml?gid=100811517&amp;single=true&amp;widget=true&amp;headers=false"
-                                                style="width: 100%; height: 100%">
+                                                style="width: ` + window.innerWidth * 0.75 + `px; height: ` + window.innerHeight * 0.75 + `px">
                                         </iframe>
                                     </div>
                                 </div>
